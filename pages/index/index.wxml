@@ -1,0 +1,19 @@
+<view class='index_bg'>
+  <image mode='widthFix' style='width:100%' src='../../image/index_bg.jpg'></image>
+  <view wx:if='{{!isLogin}}' class='loginPlease' bindtap='goLogin'>
+    <image class='loginImg' src='../../image/login.png'></image>
+    <text class='loginText'>请登陆</text>
+  </view>
+  <view wx:if='{{isLogin}}' class='loginPlease'>
+    <image class='loginImg' src='../../image/login.png'></image>
+    <text class='loginText'>{{currentUser.username}}</text>
+    <text class='logoutText' bindtap='logout'>退出</text>
+  </view>
+</view>
+<view class='btnContainer'>
+  <image class='imgBtn' src='../../image/btn_left.png' bindtap='goSearch'></image>
+  <image class='imgBtn' src='../../image/btn_right.png' bindtap='goMyOrder'></image>
+</view>
+<cutline color='#FFD276'text='维修单定位'></cutline>
+<map id="map" markers="{{markers}}" longitude="{{longitude}}" latitude="{{latitude}}" scale="15" show-location style="width: 100%;height:{{mapHeight}}px;" bindmarkertap='goDetial' >
+</map>

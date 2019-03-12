@@ -1,0 +1,7 @@
+<view class='item'>
+    <view class='title {{border?"border":"noborder"}}'>{{title}}</view>
+    <input type='{{i_type}}' bindinput='listen' placeholder-class='placeholder' placeholder='{{placeholder}}' class='input {{border?"border":"noborder"}}' value='{{value}}'></input>
+
+    <!-- 预留右侧图标点击  -->
+     <view class='icon_p {{border?"border":"noborder"}}'></view> 
+</view>

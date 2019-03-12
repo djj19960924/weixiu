@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "我的维修订单",
+  "usingComponents": {
+    "i-icon": "../../dist/icon/index"
+  }
+}

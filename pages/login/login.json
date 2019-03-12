@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "请登陆",
+  "usingComponents": {
+    "userInput": "../../myComponent/userInput/index",
+    "i-button": "../../dist/button/index"
+  }
+}

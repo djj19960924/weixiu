@@ -1,0 +1,32 @@
+<scroll-view wx:if="{{list.length>0}}" bindscrolltolower="getOrderLower" 
+    scroll-y style="height:{{windowHeight}}px;">
+ <block > 
+   <view class='bx_item' wx:for='{{list}}' wx:key='id'>
+      <view class='bx_number_p'>
+        <view class='bx_number'>订单号: <text>{{item.name}}</text></view>
+        <view class='bx_status'>{{item.type == "3" ? '已删除':(item.type == "2" ? '已维修':(item.type == "1" ? '维修中':'待维修')) }}</view>
+      </view>
+      <view class='bx_content'>
+        <view class='bx_leftIcon'><image class='bx_leftIcon_img' src='../../image/redQuestion.png'></image></view>
+        <view class='bx_text'>{{item.content}}</view>
+      </view>
+      <view class='bx_content'>
+        <view class='bx_leftIcon'><image class='bx_leftIcon_img' src='../../image/green.png'></image></view>
+        <view class='bx_text'>{{item.position}}</view>
+      </view>
+      <view class='bx_content'>
+        <view class='bx_leftIcon'><image class='bx_leftIcon_img' src='../../image/wait.png'></image></view>
+        <view class='bx_text'>{{item.createTime}}</view>
+      </view>
+       
+      <!-- 箭头 -->
+      <view bindtap='goDetial' class='bx_jiantou' data-id='{{item.id}}'>
+        <i-icon i-class='bx_jiantouIcon' type="enter" size="26" color="#80848f" />
+      </view>
+      
+  </view>
+</block>
+</scroll-view>
+<!-- 暂无数据 -->
+<image class='nodata' src='../../image/nodata.png' wx:if="{{!hasContent}}"></image>
+<view class='nodata_text' wx:if="{{!hasContent}}">您还没有订单~</view>

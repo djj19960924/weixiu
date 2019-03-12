@@ -1,0 +1,165 @@
+.slide-image{
+  width: 100%;
+  height: 100%
+}
+/* pages/EquipmentDetail/EquipmentDetail.wxss */
+
+page {
+  background-color: #fff;
+  padding-bottom: 10px;
+}
+
+.swiper-style {
+  width: 750rpx;
+  height: 500rpx;
+}
+.equipment-name {
+  padding: 20rpx 20rpx 0;
+  font-size: 28rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  color: #7C7C7C
+}
+
+.basic-info {
+  background-color: #fff;
+  padding-bottom: 20rpx;
+  border-bottom: 3px solid #F7F7F7
+}
+
+.equipment-type {
+  font-size: 28rpx;
+  padding: 10rpx 20rpx 0;
+  max-width: 710rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #787878;
+}
+
+.location-info {
+  background-color: #fff;
+  padding: 20rpx;
+  overflow: hidden;
+  border-bottom: 3px solid #F7F7F7
+}
+
+.equipment-address {
+  font-size: 28rpx;
+  line-height: 40rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  color: #398de3;
+}
+
+.longitude-latitude {
+  font-size: 28rpx;
+  width: 710rpx;
+  line-height: 50rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #398de3;
+}
+
+.navigation-btn {
+  float: left;
+  width: 353rpx;
+  height: 68rpx;
+  border-right: 1rpx solid #398de3;
+  display: flex;
+  justify-content: center;
+}
+
+.location-btn {
+  margin-top: 20rpx;
+  border: 1rpx solid #398de3;
+  overflow: hidden;
+  border-radius: 10rpx;
+}
+
+.navigation-icon {
+  height: 48rpx;
+  width: 48rpx;
+  margin-top: 10rpx;
+  display: inline-block;
+}
+
+.navigation-text {
+  font-size: 30rpx;
+  color: #398de3;
+  line-height: 68rpx;
+  margin-left: 10rpx;
+}
+
+.get-location {
+  float: left;
+  width: 353rpx;
+  height: 68rpx;
+  display: flex;
+  justify-content: center;
+}
+
+.equipment-explain {
+  font-size: 28rpx;
+  padding: 20rpx;
+  background-color: #fff;
+  margin-top: 20rpx;
+  line-height: 40rpx;
+}
+/*wxparse*/
+.title {
+
+    height: 20px;
+    font-size: 18px;
+}
+
+.source {
+	font-size: 15px;
+	color: darkgray;
+}
+
+.content {
+	font-size: 14px;
+	color: darkgray;
+}
+/*wxparse*/
+
+/*
+设备列表
+  */
+.shebeiListContainer{
+  padding: 20rpx;
+  padding-bottom: 0;
+}
+.no_sb{
+  font-size: 30rpx;
+  color: #CECBCB;
+  text-align: center;
+  margin-top: 40px;
+  width: 100%
+}
+.no_texticon{
+  width: 30rpx;
+  height: 30rpx;
+  position: relative;
+  top: 5rpx
+}
+.shebeiItem{
+  display: flex;
+  flex-direction: row;
+  border-bottom:1px solid #F2F2F2;
+  margin-bottom:20rpx;
+  padding-bottom:20rpx
+}
+.sb_img{
+  width: 200rpx;
+  height:180rpx;
+}
+.sb_rightText{
+  margin-left: 20rpx;
+}

@@ -1,0 +1,128 @@
+page{
+  background: #F2F0F0;
+  height: 100%;
+  padding-top: 42px;
+}
+.xq_item{
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  height: 100px;
+  padding: 10px 10px;
+  background: #fff;
+}
+.xq_left{
+  width: 100px;
+  height: 100%;
+  margin-right: 10px;
+}
+.xq_left_img{
+  width: 100%;
+  height: 100%;
+  border-radius: 3px;
+}
+.xq_right{
+  flex-grow: 1;
+  padding: 0px 0;
+}
+.xq_line1{
+  font-size: 32rpx;
+  max-width: 90%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 4px;
+}
+.xq_line2{
+  font-size: 26rpx;
+  max-width: 90%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 4px;
+  color: #787878;
+}
+.xq_line3{
+  font-size: 26rpx;
+  max-width: 90%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 4px;
+  color: #787878;
+}
+.xq_line4{
+  font-size: 26rpx;
+  max-width: 90%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #398DE3;
+}
+.xq_line4_icon{
+  width: 20px;
+  height: 20px;
+  vertical-align: bottom;
+  position: relative;
+  left: -2px;
+}
+.tab2Container{
+  padding-top: 2px;
+  padding-bottom: 40px;
+  box-sizing: border-box;
+}
+
+
+
+.pickerContainer{
+  height: 40px;
+  position: fixed;
+  bottom: 0;
+  background: #fff;
+  width: 100%;
+}
+.areaPicker{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 98rpx;
+  width: 100%;
+  background:#fff;
+  border-top: 1px solid #ddd;
+  color: #666;
+  padding-top: 3px;
+  z-index: 2000;
+  padding-right: 80rpx
+}
+.icon-left {
+  float: left;
+  height: 48rpx;
+  width: 48rpx;
+  margin-left: 30rpx;
+  position: relative;
+  top: 5px;
+  margin-right: 5px;
+  vertical-align: bottom;
+}
+.areatext{
+  position:relative;
+  top:8px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.arrows-icon {
+  height: 40rpx;
+  width: 40rpx;
+  float: right;
+  margin-right: 20rpx;
+  position:relative;
+  top:-15px; 
+}
+.picker{
+  height: 40px;
+  line-height: 40px;
+  border-top: 1px solid #F5F6F6;
+  font-size:14px;
+  color:#666;
+}

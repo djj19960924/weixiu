@@ -1,0 +1,17 @@
+<view class='content {{border?"border":"noborder"}}' style='margin-top:{{top}}px;margin-bottom:{{bottom}}px'>
+  <i-row i-class="demo-row">
+
+    <i-col span="22" i-class="demo-col">
+      <view class="text">
+        <image class='icon_left' src="{{left}}"></image> 
+        <text>{{text}}</text> 
+      </view>
+    </i-col>
+
+    <i-col span="2" i-class="demo-col">
+      <image class='icon_right' src="{{right}}"></image>
+    </i-col>
+
+  </i-row> 
+
+</view>

@@ -1,0 +1,5 @@
+<view class='cutline' style='width:{{width}}'>
+  <view style='border-bottom:1px solid {{color}}' class='line'></view>
+  <view style='color:{{color}}' class='text'>{{text}}</view>
+  <view style='border-bottom:1px solid {{color}}' class='line'></view>
+</view> 

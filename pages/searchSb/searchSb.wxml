@@ -1,0 +1,56 @@
+<i-tabs fixed='{{true}}' current="{{ current }}" color="#f4b74a" bindchange="handleChangeTab">
+  <i-tab key="tab1" title="附近小区"></i-tab>
+  <i-tab key="tab2" title="区域查找"></i-tab>
+</i-tabs>
+<!-- tab1  -->
+<view wx:if="{{(current === 'tab1')}}">
+  <map id="map" markers="{{markers}}" longitude="{{longitude}}" latitude="{{latitude}}" bindmarkertap='goseesb' 
+   scale="14" show-location style="width: 100%;height:{{pageHeight}}px;"></map>
+</view>
+<!-- tab2  -->
+
+<view  wx:if="{{(current === 'tab2')}}" class='tab2Container'>
+     <!-- 没有更多了 -->
+  
+      <image class='nodata' src='../../image/nodata.png' wx:if="{{villageList.length==0}}"></image>
+      <view class='nodata_text'  wx:if="{{villageList.length==0}}">暂无数据</view>
+  <scroll-view bindscrolltolower="getEquipmentLower" scroll-y style="height:{{windowHeight}}px;" >
+     <block wx:for="{{villageList}}" wx:key="id" >
+        <view class='xq_item' catchtap='goseesb'  data-id="{{item.id}}">
+     
+              <view class='xq_left'>
+                <image class='xq_left_img' src='{{imgUrl+item.img_urls}}'></image>
+              </view>
+              <view class='xq_right'>
+                  <view class='xq_line1'>{{item.name}}</view>
+                  <view class='xq_line2'>驾车路线距离{{item.distance}}</view>
+                  <view class='xq_line3'>预估时间{{item.duration}}分钟</view>
+                  <view class='xq_line4'>
+                    <image class='xq_line4_icon' src='../../image/icon_daohang.png'></image>
+                    <text class='xq_line4_text' catchtap='intoMap' data-id='{{item}}'>点我直接导航去{{item.name}}</text>
+                  </view>
+              </view>
+          
+      </view>
+    </block>
+      <!-- <view wx:if="{{villageList.length==0}}" class='nothingMore' >
+      <image class='nothingMoreImg' src='../../image/end.png'></image>没有更多了~
+    </view> -->
+ </scroll-view>
+      
+    <view class='pickerContainer'>
+          <picker mode="multiSelector" bindchange="bindMultiPickerChange"
+            bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" 
+            range="{{objectMultiArray}}"
+              range-key="{{'name'}}">
+              <view class="picker">
+                    <image class="icon-left" src="../../image/weizhi.png"></image>
+                    <text style='margin-right:15px;font-size:16px'>选择区域</text>
+                    {{objectMultiArray[0][multiIndex[0]].name}} 
+                    {{objectMultiArray[1][multiIndex[1]].name}} 
+                    {{objectMultiArray[2][multiIndex[2]].name}}
+                </view>
+          </picker>
+    </view>
+
+</view>

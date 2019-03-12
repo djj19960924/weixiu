@@ -1,0 +1,9 @@
+<view class='page'>
+  <view class='title'>{{title}}</view>
+  <view class='info'>
+    <head_name wx:if='{{headImg!==""}}' img='{{headImg}}' name='{{where}}'></head_name>
+    <view wx:if='{{headImg==""}}' class='where'>{{where}}</view>
+    <view class='time'>{{time}}</view>
+  </view>
+  <view class='content'>{{content}}</view>
+</view>

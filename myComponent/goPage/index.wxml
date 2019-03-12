@@ -1,0 +1,19 @@
+<view class='item'>
+  <i-row i-class="demo-row">
+
+    <i-col span="22" i-class="demo-col">
+      <view class='text {{border?"border":"noborder"}}'>
+        <image class='icon' src="{{icon}}"></image>
+        <text style='color:{{color}}'>{{text}}</text>
+      </view>
+    </i-col>
+
+    <i-col span="2" i-class="demo-col">
+      <view class='enter {{border?"border":"noborder"}}'>
+        <i-icon type="enter" size="26" color="{{color}}" />
+      </view>
+    </i-col>
+
+  </i-row>
+  <view bindtap="goto" class='eventCover'></view>
+</view>

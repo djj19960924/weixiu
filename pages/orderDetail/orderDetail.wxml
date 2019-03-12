@@ -1,0 +1,42 @@
+ 
+<view class='content'>
+  <view class='number'  >订单号: <text>{{order.name}}</text>
+        <view class="status">
+        {{order.type == "3" ? '已删除':(order.type == "2" ? '已维修':(order.type == "1" ? '维修中':'待维修')) }}</view>
+  </view>
+  <view class='item'>
+    <view class='title'>报修时间:</view>
+    <view class='text'>{{order.createTime}}</view>
+  </view>
+  <view class='item'>
+    <view class='title'>报修地点:</view>
+    <view class='text'>{{order.position}}</view>
+  </view>
+  <view class='item'>
+    <view class='title'  >问题描述:</view>
+    <view class='text'>{{order.content}}</view>
+  </view>
+  <view class='item' >
+    <view class='title'>
+         语音描述:
+    </view>
+    <view class='text' wx:if="{{order.voiceFile!=null&&order.voiceFile!=''}}" >
+       <image class='yuyin' src='../../image/record_icon.png' data-voiceurl="{{imgUrlIp+order.voiceFile}}" bindtap='play'>
+       </image>
+    </view>
+
+  </view>
+  <view class='item' >
+    <view class='title'>故障图片:</view>
+   
+    <view class='imgContainer'   >
+      <image bindtap='previewImg' wx:for="{{order.images}}" wx:for-item="itemimg" wx:key="id"   class='bxImg' src='{{imgUrlIp+itemimg}}'  data-imgurl="{{imgUrlIp+itemimg}}" ></image>
+      
+    </view>
+  </view>
+  <view class='item btn_db'>
+    <view class='btn1' bindtap='intoMap' data-id='{{order}}'>导航</view>
+    <view bindtap="startFix" data-id='{{order.id}}' class='btn1' >{{order.type == "3" ? '已删除':(order.type == "2" ? '已维修':(order.type == "1" ? '完成维修':'去维修')) }}</view> 
+  </view>
+
+</view>

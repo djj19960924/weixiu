@@ -1,0 +1,34 @@
+.page{
+  margin: 20px 10px;
+}
+.title{
+  font-size: 20px;
+  color: #000;
+
+}
+.content{
+  color: #666;
+  font-size: 15px;
+}
+.info{
+  margin: 10px 0 20px 0;
+  height: 25px;
+  display: flex;
+  flex-direction: row;
+}
+.time{
+  color: #9d9d9d;
+  font-size: 12px;
+  height: 100%;
+  line-height: 25px;
+  text-align: right;
+  flex-grow: 1;
+}
+.where{
+  color: #9d9d9d;
+  font-size: 12px;
+  height: 100%;
+  line-height: 25px;
+  max-width: 200px;
+  overflow: hidden;
+}

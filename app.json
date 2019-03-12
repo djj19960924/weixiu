@@ -1,0 +1,21 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/myOrder/myOrder",
+    "pages/orderDetail/orderDetail",
+    "pages/login/login",
+    "pages/searchSb/searchSb",
+    "pages/sb_xq/sb_xq"
+  ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "体育设施维修",
+    "navigationBarTextStyle": "black"
+  }
+}

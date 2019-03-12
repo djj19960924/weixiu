@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "小区详情",
+  "usingComponents": {
+    "userInput": "../../myComponent/userInput/index",
+    "i-button": "../../dist/button/index"
+  }
+}

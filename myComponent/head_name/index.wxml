@@ -1,0 +1,4 @@
+<view class='item' style='width:{{width}}px'>
+  <image class='head' src='{{img}}'></image>
+  <view class='name' style='color:{{color}}'>{{name}}</view>
+</view>

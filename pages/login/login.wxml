@@ -1,0 +1,5 @@
+<view class='inputContainer'>
+  <userInput id='account' bind:listen='listenAccount' title='账号' placeholder='您的账号' value="{{name}}"></userInput>
+  <userInput i_type='password' id='pwd' bind:listen='listenPwd' border='{{0}}' title='密码' placeholder='您的密码' value="{{phone}}"></userInput>
+</view>
+<view class='btn1' bindtap='ok' >确定</view>
