@@ -5,7 +5,9 @@
     "pages/orderDetail/orderDetail",
     "pages/login/login",
     "pages/searchSb/searchSb",
-    "pages/sb_xq/sb_xq"
+    "pages/pointDetail/pointDetail",
+    "pages/sb_xq/sb_xq",
+    "pages/cameraDetail/cameraDetail"
   ],
   "permission": {
     "scope.userLocation": {

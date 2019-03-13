@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "h_header": "../../../myComponent/h_header/h_header",
+    "i-icon": "../../../dist/icon/index"
+  },
+  "navigationBarTextStyle": "black"
+}

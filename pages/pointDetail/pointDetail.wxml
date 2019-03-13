@@ -1,0 +1,55 @@
+<!-- header -->
+<h_header class='box_top' title='设施点详情'></h_header>
+
+<!-- swiper -->
+<swiper
+  interval = "3000"
+  duration = "500"
+  circular = "true"
+>
+  <block wx:for="{{imgUrls}}" wx:key="index">
+    <swiper-item>
+      <image mode='aspectFill' src="{{item}}" class="swiper"/>
+    </swiper-item>
+  </block>
+</swiper>
+
+
+<view class="basic-info">
+  <view class="equipment-name">{{equipmentDetail.name}}</view>
+</view>
+
+<view class="location-info">
+  <view class="longitude-latitude" wx:if="{{longitude&&latitude}}">经度\r\n\r\n{{longitude}}\r\n\r\n\r\n\r\n\r\n\r\n纬度\r\n\r\n{{latitude}}</view>
+  <view class="location-btn">
+    <view class="navigation-btn" bindtap='intoMap'>
+      <image class="navigation-icon" src="./images/daohang.png"></image>
+      <view class="navigation-text">导航</view>
+    </view>
+    <view class="get-location" bindtap="getLocationInfo">
+      <image class="navigation-icon" src="./images/location.png"></image>
+      <view class="navigation-text">上传设施点图片</view>
+    </view>
+  </view>
+</view>
+
+
+
+<!--  设备列表  -->
+<view class='shebeiListContainer'> 
+  <view style='font-size: 28rpx;color:#7c7c7c;padding-bottom:14rpx'>设备列表</view>
+     <view class='shebeiItem' wx:for="{{sb_allInfo}}" bindtap='gotoSbDetail' data-id='{{item.id}}'wx:key="id">
+      <image mode='aspectFill' class='sb_img' src='{{imgUrl+item.image_url}}'></image> 
+      <!-- <image mode='aspectFill' class='sb_img' src='{{item.image_url}}'></image>  -->
+       <view class='sb_rightText'>
+        <view style="color:#398DE3;font-size:26rpx">设备名称：{{item.name}}</view>
+        <view style='color:#666;font-size:24rpx'>设备编号：{{item.id}}</view>
+        <view style='color:#666;font-size:24rpx'>设备类型：{{item.typename}}</view>
+        <view style='color:#666;font-size:24rpx'>安装日期：{{item.install_time}}</view>
+      </view> 
+     </view> 
+</view>
+<!--  设备为空  -->
+<view class='no_sb' wx:if="{{sb_allInfo.length==0}}">
+  暂无设备
+</view>

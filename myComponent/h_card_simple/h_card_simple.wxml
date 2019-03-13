@@ -1,0 +1,18 @@
+<view class='cardContainer'>
+  <view style='width:{{imgW}}px;height:{{imgH}}px;z-index:{{zIndex}}' class='left'>
+    <image bindload='finishLoad'style='width:{{width}};height:{{height}}' mode='aspectFit' class='leftImg' src='{{imgUrl}}'></image>
+    <image class='leftImg' wx:if="{{!imgFinish}}" mode='widthFix' src='{{defaultImgSrc}}'></image>
+  </view>
+  <view style='width:calc(100% - {{imgW + 16 + rightPadding}}px);z-index:{{zIndex}}' class='right'>
+    <view wx:if="{{lineA}}" class='rightMain'>{{lineA}}</view>
+    <view wx:if="{{lineB}}" class='rightSub'>{{lineB}}</view>
+    <view wx:if="{{lineC}}" class='rightSub'>{{lineC}}</view>
+    <view wx:if="{{lineD}}" class='rightBottom'>
+    <image class='rightBottomImg' src='{{lineDImg}}'></image>
+    {{lineD}}
+    </view>
+    <view>
+      <text wx:if="{{line_tabs.length}}" class='tabs' style='color:{{item.color}};background:{{item.background}};border:1px solid {{item.border}}' wx:for="{{line_tabs}}">{{item.name}}</text>
+    </view>
+  </view>
+</view>

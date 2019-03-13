@@ -8,6 +8,7 @@ App({
     map_key: '850cbda2ea15e9990baecfab7cf19d21',
     userInfo_wx: null,
     url: 'http://222.135.77.34:8081/rms/',
+    url1:"https://tc.whtiyu.cn/rms/",
     // url: 'https://binhu.paobapaoba.cn/',
     fileUrl: 'http://jiangda.paobapaoba.cn/',
     islogin:false,
@@ -17,6 +18,9 @@ App({
     latitude:null,
     longitude: null,
     citySign: 2,//使用范围标识 0 省 1 市 2区 县
+    map_key: '850cbda2ea15e9990baecfab7cf19d21',
+    organize_id: 63, //机构  id
+    imgFileUrl: 'http://jiangda.paobapaoba.cn/',// 七牛图片地址
   },
 
   
@@ -26,7 +30,7 @@ App({
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
-      
+     
      
       }
       

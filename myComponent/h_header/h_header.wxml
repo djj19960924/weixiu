@@ -1,0 +1,13 @@
+<!-- header -->
+<view wx:if="{{platform == 'ios'}}" style='padding-top:24pt;top:{{top}}px' class='myheader'>{{title}}
+  <view wx:if="{{back}}" catchtap='back' style='top:24pt' class='back'><i-icon color='#495060' size='24' type="return" /></view>
+</view>
+<view wx:if="{{platform == 'android'}}" style='padding-top:30pt;top:{{top}}px' class='myheader'>{{title}}
+  <view wx:if="{{back}}" catchtap='back' style='top:30pt' class='back'><i-icon color='#495060' size='24' type="return" /></view>
+</view>
+<view wx:if="{{platform == 'devtools'}}" style='padding-top:24pt;top:{{top}}px' class='myheader'>{{title}}
+  <view wx:if="{{back}}" catchtap='back' style='top:24pt' class='back'><i-icon color='#495060' size='24' type="return" /></view>
+</view>
+<view wx:if="{{platform == 'ios'}}" style='padding-top:24pt' class='myheader_o'>{{pulltext}}</view>
+<view wx:if="{{platform == 'android'}}" style='padding-top:30pt' class='myheader_o'>{{pulltext}}</view>
+<view wx:if="{{platform == 'devtools'}}" style='padding-top:24pt' class='myheader_o'>{{pulltext}}</view>

@@ -1,93 +1,55 @@
-var app = getApp();
 var amapFile = require('../../utils/amap-wx.js');
-Page({
+var app = getApp();
 
-  /**
-   * 页面的初始数据
-   */
+Page({
   data: {
-    pageHeight:561,
-    current: 'tab1',
-    latitude: null,
-    longitude: null,
-    markers: [],
+    objectMultiArray: [],
     streetList: [],
     communityList: [],
-    objectMultiArray: [],
     multiIndex: [0, 0, 0],
-    villageList:[],
-    imgUrl: getApp().globalData.fileUrl
+    villageList: [],
+    latitude: null,
+    longitude: null,
+    imgUrl: getApp().globalData.imgFileUrl
   },
 
-  onLoad:function(){
-    var that = this;
+  onLoad: function (options) {
+    // 获取滚动区域高度
+    let query = wx.createSelectorQuery()
     wx.getSystemInfo({
-      success: function (res) {
-        that.setData({
-          windowHeight: res.windowHeight,
-          pageHeight: res.windowHeight - 42
-        });
+      success: res => {
+        query.selectAll('.box_top').boundingClientRect(rect => {
+          let heightAll = 0;
+          rect.map((currentValue, index, arr) => {
+            heightAll = heightAll + currentValue.height
+          })
+          this.setData({
+            scrollheight: res.windowHeight - heightAll
+          })
+        }).exec();
       }
-    });
-    var myAmapFun = new amapFile.AMapWX({ key: app.globalData.map_key });
-    myAmapFun.getRegeo({
-      success: function (data) {
-        that.setData({
-          latitude: data[0].latitude,
-          longitude: data[0].longitude
-        })
-      },
-      fail: function (info) {
-        console.log(info)
-      }
-    });
-
-    ///location.call(this);
-    //获取用户当前位置
-    mapAreas.call(this);
-  },
-
-  handleChangeTab({ detail }) {
-    if (detail.key == 'tab2' && this.data.villageList.length==0) {
-      getAllArea.call(this);
-    }
-  
-    this.setData({
-      // sliderOffset: e.currentTarget.offsetLeft,
-      // activeIndex: e.currentTarget.id,
-      markers: this.data.markers,
-      current: detail.key
-    });
-  },
-  //开始导航
-  intoMap: function (e) {
-    var item=e.currentTarget.dataset.id;
-    var that = this;
-    if (item.latitude == null || item.latitude=='' ) {
-      wx.showModal({
-        title: '提示',
-        content: '尚未获取位置信息',
-        showCancel: false
-      })
-      return
-    }
-    wx.openLocation({
-      latitude: (item.latitude) * 1,
-      longitude: (item.longitude) * 1,
-      name: item.name,
-      address: item.position
     })
+    getAreas.call(this);
+    getAllArea.call(this);
   },
-  goseesb:function(e){
-    var id = e.markerId;
-    if(id == undefined)
-      id = e.currentTarget.dataset.id;
+
+  onShareAppMessage: function () {
+
+  },
+  goDetail: function (e) {
+
+    var id = e.currentTarget.dataset.item.id
+    console.log('id1:', id)
     wx.navigateTo({
-      url: '../sb_xq/sb_xq?id=' +id,
+      url: '../pointDetail/pointDetail?id=' + id,
     })
   },
-  goDaohang:function(){
-    console.log("导航")
+
+  daohang: function (e) {
+    wx.openLocation({
+      longitude: Number(e.target.dataset.longitude),
+      latitude: Number(e.target.dataset.latitude),
+    })
   },
   //三级联动
   bindMultiPickerColumnChange: function (e) {
@@ -156,16 +118,17 @@ Page({
       url: getApp().globalData.url + "wx/address/village",
       data: {
         communityId: that.data.objectMultiArray[2][e.detail.value[2]].id,
-        organizeId: getApp().globalData.currentUser.organizeId
+        organizeId: getApp().globalData.organize_id
       },
       success: function (res) {
-        var resdata=res.data.data;
+        console.log('village:', res.data)
+        var resdata = res.data.data;
         var myAmapFun = new amapFile.AMapWX({ key: app.globalData.map_key });
         wx.getLocation({
           type: "gcj02",
           success: function (aa) {
-            if(resdata ==undefined)
-              resdata=[];
+            if (resdata == undefined)
+              resdata = [];
             var villageList = [];
             if (resdata.length > 0) {
               recurve(resdata.length - 1, res, villageList, aa)
@@ -178,8 +141,11 @@ Page({
             }
             //递归计算路径距离时间
             function recurve(b, res, villageList, aa) {
-             // console.log(villageList);
+              // console.log('bbb:',b)
+              // console.log(villageList);
               if (b == 0) {
+                // console.log("1111",res.data.data[b])
+
                 var arr = res.data.data[b].img_urls.split(',');
                 res.data.data[b].img_urls = arr[0];
                 if (res.data.data[b].longitude) {//有位置信息
@@ -195,12 +161,12 @@ Page({
                       }
                       res.data.data[b].duration = (response.paths[0].duration / 60).toFixed(0);
                       villageList.unshift(res.data.data[b])
-                     
+
                       that.setData({
                         villageList: villageList
                       })
                       wx.hideLoading();
-                     
+
                       return;
                     }
                   })
@@ -217,28 +183,28 @@ Page({
                 }
               }
               else {
-              
-                if (res.data.data[b].img_urls != null && res.data.data[b].img_urls.length>0){
+
+                if (res.data.data[b].img_urls != null && res.data.data[b].img_urls.length > 0) {
                   var arr = res.data.data[b].img_urls.split(',');
                   res.data.data[b].img_urls = arr[0];
                 }
-                
+
                 if (res.data.data[b].longitude) {//有位置信息
                   myAmapFun.getDrivingRoute({
                     origin: aa.longitude + ',' + aa.latitude,
                     destination: res.data.data[b].longitude + ',' + res.data.data[b].latitude,
                     success: function (response) {
-                     
+
                       if (response.paths[0].distance >= 100) {
                         res.data.data[b].distance = response.paths[0].distance / 1000 + "km";
                       }
                       else {
                         res.data.data[b].distance = " <100m";
                       }
-                     
+
                       res.data.data[b].duration = (response.paths[0].duration / 60).toFixed(0);
                       villageList.unshift(res.data.data[b])
-                
+
                       recurve(b - 1, res, villageList, aa)
                     }
                   })
@@ -254,24 +220,27 @@ Page({
           },
         })
       }
+
     })
   },
   //上拉加载
-  getEquipmentLower: function () {
-    console.log(11111);
-    var that = this;
-    if (!that.data.isBottom) {
-      var pageNo = this.data.pageNo + 1;
-      this.setData({
-        pageNo: pageNo
-      })
-      myjifen.call(this);
-    }
-  },
+  // getEquipmentLower: function () {
+  //   console.log(11111);
+  //   var that = this;
+  //   if (!that.data.isBottom) {
+  //     var pageNo = this.data.pageNo + 1;
+  //     this.setData({
+  //       pageNo: pageNo
+  //     })
+  //     myjifen.call(this);
+  //   }
+  // },
+
 })
- //获取用户当前位置
-function location(){
-  var that=this;
+
+//获取用户当前位置
+function location() {
+  var that = this;
   wx.getLocation({
     type: "gcj02",
     success: function (res) {
@@ -282,87 +251,57 @@ function location(){
     },
   })
 }
+
 //获取地图上所有小区
-function mapAreas(){
- var that=this;
+function getAreas() {
+  var that = this;
   wx.request({
-    url: getApp().globalData.url+ "wx/address/villageList",
-    data:{
+    url: getApp().globalData.url + "wx/address/villageList",
+
+    data: {
       citySign: getApp().globalData.citySign,
-      organizeId: getApp().globalData.currentUser.organizeId,
+      organizeId: getApp().globalData.organize_id,
     },
     success: function (res) {
       var list = res.data.data;
-      //console.log(list);
-      var markers = [];
-      for (var i = 0; i < list.length; i++) {
-        if (list[i].latitude && list[i].longitude) {
-          markers.push({
-            iconPath: "/image/mapicon.png",
-            id: list[i].id,
-            latitude: list[i].latitude,
-            longitude: list[i].longitude,
-            width: 40,
-            height: 40,
-            alpha: 0.9,
-            // callout: {
-            //   content: list[i].name,
-            //   color: '#FFFFFF',
-            //   borderRadius: 3,
-            //   padding: 5,
-            //   display: 'ALWAYS',
-            //   textAlign: 'center',
-            //   bgColor: '#F5DB55',
-            //   // x:-30,
-            //   // y:-55
-            // },
-          })
-        }
-      }
-      that.setData({
-        markers: markers
-      })
+      console.log("所有小区列表: ", list);
+      // that.setData({
+      //   villageList : list
+      // })
+
     }
   })
 }
 
 function getAllArea() {
+  console.log("city:", app.globalData.citySign)
   wx.showLoading({
-    title: '加载中...',
+    title: '加载中',
   })
   var that = this;
   wx.request({
-    url: getApp().globalData.url + "wx/xmList",
+    url: 'https://tc.whtiyu.cn/admin/dept/tree2',
     data: {
       citySign: getApp().globalData.citySign,
-      organize_id: getApp().globalData.currentUser.organizeId,
+      organize_id: getApp().globalData.organize_id,
     },
     success: function (res) {
-      var retdata = res.data.data;
-    // console.log(retdata);
+      console.log("区域列表: ", res)
+      var retdata = res.data.data.data;
+      // console.log(retdata);
       var areaList = retdata.area;
       var streetList = retdata.street;
       var communityList = retdata.community;
       var streetList_1 = [];
       var communityList_1 = [];
-     // console.log(streetList);
-      // for (var i = 0; i < streetList.length; i++) {
-      //   if (streetList[i].areaId == areaList[0].id) {
-      //     streetList_1.push(streetList[i])
-      //   }
-      // }
-      // for (var j = 0; j < communityList.length; j++) {
-      //   if (communityList[j].streetId == streetList_1[0].id) {
-      //     communityList_1.push(communityList[j])
-      //   }
-      // }
+
       that.setData({
         objectMultiArray: [areaList, streetList, communityList],
-        // objectMultiArray: [areaList, streetList_1, communityList_1],
         streetList: streetList,
         communityList: communityList,
       })
 
+      console.log("第三级社区: ", that.data.objectMultiArray[2][0])
       //如果没有选到第三级社区
       if (!that.data.objectMultiArray[2][0]) {
         wx.hideLoading();
@@ -371,25 +310,24 @@ function getAllArea() {
         })
         return;
       }
-    
+
       //获取第一个小区列表
       wx.request({
         url: getApp().globalData.url + "wx/address/village",
         data: {
           communityId: that.data.objectMultiArray[2][0].id,
-          organizeId: getApp().globalData.currentUser.organizeId
+          organizeId: getApp().globalData.organize_id
         },
         success: function (res) {
-         var retdata=res.data;
-         //console.log(retdata);
+          var retdata = res.data;
+          console.log("获取第一个小区列表: ", retdata);
           var myAmapFun = new amapFile.AMapWX({ key: app.globalData.map_key });
           wx.getLocation({
             type: "gcj02",
             success: function (aa) {
-             
+              console.log('aaa: ', aa)
               var villageList = [];
               if (retdata.code == 0 && retdata.data.length > 0) {
-               
                 recurve(retdata.data.length - 1, res, villageList, aa)
               }
               else {
@@ -398,16 +336,20 @@ function getAllArea() {
                   villageList: []
                 })
               }
-              //递归计算路径距离时间
+              //递归每个小区的计算路径距离时间
               function recurve(b, res, villageList, aa) {
-               
+
+                console.log('bbbbbbbb', b)
+                console.log('res.data.data: ', res.data.data)
                 if (b == 0) {
+
                   if (res.data.data[b].img_urls != null && res.data.data[b].img_urls.length > 0) {
-                   
-                  var arr = res.data.data[b].img_urls.split(',');
-                  res.data.data[b].img_urls = arr[0];
+
+                    var arr = res.data.data[b].img_urls.split(',');
+                    res.data.data[b].img_urls = arr[0];
                   }
                   if (res.data.data[b].longitude) {//有位置信息
+                    console.log('111111111')
                     myAmapFun.getDrivingRoute({
                       origin: aa.longitude + ',' + aa.latitude,
                       destination: res.data.data[b].longitude + ',' + res.data.data[b].latitude,
@@ -440,8 +382,9 @@ function getAllArea() {
                   }
                 }
                 else {
+
                   if (res.data.data[b].img_urls != null && res.data.data[b].img_urls.length > 0) {
-                   
+
                     var arr = res.data.data[b].img_urls.split(',');
                     res.data.data[b].img_urls = arr[0];
                   }
@@ -479,3 +422,4 @@ function getAllArea() {
     }
   })
 }
+

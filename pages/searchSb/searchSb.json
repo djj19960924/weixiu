@@ -1,8 +1,10 @@
 {
-  "navigationBarTitleText": "设施查询",
-  "usingComponents": {
-    "i-tabs": "../../dist/tabs/index",
-    "i-tab": "../../dist/tab/index",
-    "head_name": "../../myComponent/head_name/index"
+    "usingComponents": {
+      "i-icon": "../../dist/icon/index",
+      "i-load-more": "../../dist/load-more/index",
+      "h_card_simple": "../../../myComponent/h_card_simple/h_card_simple",
+      "h_header": "../../../myComponent/h_header/h_header",
+      "h_nodata": "../../../myComponent/h_nodata/h_nodata"
+    },
+    "navigationBarTextStyle": "black"
   }
-}

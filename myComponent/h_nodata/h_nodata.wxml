@@ -1,0 +1,4 @@
+<view class='nodataContainer'>
+  <image style='width:{{imgW}}px;height:{{imgH}}px' class='img' src='{{img}}'></image>
+  <view class='text'>{{tips}}</view>
+</view>

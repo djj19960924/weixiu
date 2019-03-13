@@ -1,0 +1,55 @@
+page{
+  background: #E5E5E5
+}
+
+.weizhip{
+  background: #fff;
+  padding: 10px 16px;
+  margin: 6px 0;
+  width: 100%
+}
+.weizhit{
+  font-size: 16px;
+}
+.weizhi{
+  width: 100%;
+  font-size: 13px;
+  margin-top: 8px;
+  height: 26px;
+  line-height: 26px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.weizhiicon{
+  position: relative;
+  top: -2px;
+}
+
+.imgp{
+  padding: 10px 16px;
+  background: #fff;
+  margin: 6px 0;
+}
+.imgt{
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+.submitp{
+  padding: 16px;
+  padding-bottom: 26px;
+  margin-top:65px;
+}
+.submit{
+  border-radius: 50px;
+  color: #D3E5F3;
+  font-size: 30rpx;
+  text-align: center;
+  width: 100%;
+  padding: 18rpx 0;
+  background: -webkit-linear-gradient(left, #0856A7 , #009CDE); /* Safari 5.1 - 6.0 */
+  background: -o-linear-gradient(right, #0856A7, #009CDE); /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient(right, #0856A7, #009CDE); /* Firefox 3.6 - 15 */
+  background: linear-gradient(to right, #0856A7 , #009CDE); /* 标准的语法（必须放在最后） */
+}

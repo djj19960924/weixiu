@@ -78,7 +78,7 @@ Page({
     }
   },
   goSearch:function(){
-    return;
+   
     // 检查用户是否登陆
     if (getApp().globalData.islogin) {//登陆
       wx.navigateTo({
