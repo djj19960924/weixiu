@@ -147,6 +147,7 @@ swiper{
   flex-direction: row;
   border-bottom:1px solid #F2F2F2;
   margin-bottom:20rpx;
+  padding: 5px 0;
 }
 .sb_img{
   width: 220rpx;

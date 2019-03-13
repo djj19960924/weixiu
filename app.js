@@ -18,7 +18,6 @@ App({
     latitude:null,
     longitude: null,
     citySign: 2,//使用范围标识 0 省 1 市 2区 县
-    map_key: '850cbda2ea15e9990baecfab7cf19d21',
     organize_id: 63, //机构  id
     imgFileUrl: 'http://jiangda.paobapaoba.cn/',// 七牛图片地址
   },

@@ -39,7 +39,7 @@
 <view class='shebeiListContainer'> 
   <view style='font-size: 28rpx;color:#7c7c7c;padding-bottom:14rpx'>设备列表</view>
      <view class='shebeiItem' wx:for="{{sb_allInfo}}" bindtap='gotoSbDetail' data-id='{{item.id}}'wx:key="id">
-      <image mode='aspectFill' class='sb_img' src='{{imgUrl+item.image_url}}'></image> 
+      <image mode='aspectFit' class='sb_img' src='{{imgUrl+item.image_url}}'></image> 
       <!-- <image mode='aspectFill' class='sb_img' src='{{item.image_url}}'></image>  -->
        <view class='sb_rightText'>
         <view style="color:#398DE3;font-size:26rpx">设备名称：{{item.name}}</view>
